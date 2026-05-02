@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Irrigation System – Paddy Farming</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <i class="fas fa-seedling"></i>
+      <span>SmartIrrigation</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#features" class="nav-link">Features</a></li>
+      <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+      <li><a href="#control" class="nav-link">Control</a></li>
+      <li><a href="#benefits" class="nav-link">Benefits</a></li>
+      <li><a href="#team" class="nav-link">Team</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <span class="live-badge"><span class="pulse-dot"></span>Live</span>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="hero-grid-pattern"></div>
+    <!-- SVG rice paddy landscape -->
+    <svg class="hero-landscape" viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#0a2e1a;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#1a5c2a;stop-opacity:0.6" />
+        </linearGradient>
+        <linearGradient id="fieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#166534;stop-opacity:0.8" />
+          <stop offset="100%" style="stop-color:#14532d;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:0.3" />
+          <stop offset="100%" style="stop-color:#0369a1;stop-opacity:0.2" />
+        </linearGradient>
+      </defs>
+      <!-- Sky -->
+      <rect width="1440" height="400" fill="url(#skyGrad)" />
+      <!-- Far hills -->
+      <path d="M0 260 Q200 180 400 220 Q600 160 800 200 Q1000 150 1200 190 Q1350 170 1440 200 L1440 400 L0 400 Z" fill="#0d3d1a" opacity="0.7"/>
+      <!-- Mid fields (terraced) -->
+      <path d="M0 300 Q180 270 360 285 Q540 260 720 275 Q900 255 1080 270 Q1260 255 1440 270 L1440 400 L0 400 Z" fill="#15603a" opacity="0.85"/>
+      <!-- Paddy rows -->
+      <g opacity="0.5" stroke="#22c55e" stroke-width="1" fill="none">
+        <path d="M0 320 Q120 315 240 320 Q360 315 480 320 Q600 315 720 320 Q840 315 960 320 Q1080 315 1200 320 Q1320 315 1440 320"/>
+        <path d="M0 335 Q120 330 240 335 Q360 330 480 335 Q600 330 720 335 Q840 330 960 335 Q1080 330 1200 335 Q1320 330 1440 335"/>
+        <path d="M0 350 Q120 345 240 350 Q360 345 480 350 Q600 345 720 350 Q840 345 960 350 Q1080 345 1200 350 Q1320 345 1440 350"/>
+        <path d="M0 365 Q120 360 240 365 Q360 360 480 365 Q600 360 720 365 Q840 360 960 365 Q1080 360 1200 365 Q1320 360 1440 365"/>
+      </g>
+      <!-- Water reflections in paddy -->
+      <path d="M0 310 Q360 305 720 310 Q1080 305 1440 310 L1440 400 L0 400 Z" fill="url(#waterGrad)"/>
+      <!-- Rice stalks (simplified) -->
+      <g fill="#4ade80" opacity="0.4">
+        <rect x="60" y="295" width="2" height="18" rx="1"/>
+        <rect x="58" y="287" width="6" height="8" rx="3"/>
+        <rect x="160" y="290" width="2" height="20" rx="1"/>
+        <rect x="158" y="282" width="6" height="8" rx="3"/>
+        <rect x="280" y="293" width="2" height="17" rx="1"/>
+        <rect x="278" y="285" width="6" height="8" rx="3"/>
+        <rect x="400" y="291" width="2" height="19" rx="1"/>
+        <rect x="398" y="283" width="6" height="8" rx="3"/>
+        <rect x="530" y="294" width="2" height="16" rx="1"/>
+        <rect x="528" y="286" width="6" height="8" rx="3"/>
+        <rect x="650" y="290" width="2" height="20" rx="1"/>
+        <rect x="648" y="282" width="6" height="8" rx="3"/>
+        <rect x="780" y="293" width="2" height="17" rx="1"/>
+        <rect x="778" y="285" width="6" height="8" rx="3"/>
+        <rect x="900" y="291" width="2" height="19" rx="1"/>
+        <rect x="898" y="283" width="6" height="8" rx="3"/>
+        <rect x="1030" y="294" width="2" height="16" rx="1"/>
+        <rect x="1028" y="286" width="6" height="8" rx="3"/>
+        <rect x="1160" y="290" width="2" height="20" rx="1"/>
+        <rect x="1158" y="282" width="6" height="8" rx="3"/>
+        <rect x="1300" y="292" width="2" height="18" rx="1"/>
+        <rect x="1298" y="284" width="6" height="8" rx="3"/>
+        <rect x="1400" y="295" width="2" height="15" rx="1"/>
+        <rect x="1398" y="287" width="6" height="8" rx="3"/>
+      </g>
+      <!-- Circuit / tech lines overlay -->
+      <g stroke="#22c55e" stroke-width="0.8" fill="none" opacity="0.25">
+        <path d="M200 80 L300 80 L300 120 L500 120"/>
+        <path d="M700 60 L800 60 L800 100 L900 100 L900 80 L1100 80"/>
+        <path d="M400 150 L450 150 L450 200"/>
+        <path d="M950 130 L1000 130 L1000 160 L1050 160"/>
+        <circle cx="300" cy="80" r="4" fill="#22c55e"/>
+        <circle cx="800" cy="60" r="4" fill="#22c55e"/>
+        <circle cx="1000" cy="130" r="4" fill="#22c55e"/>
+        <circle cx="450" cy="200" r="4" fill="#22c55e"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero-content" data-animate="fade-up">
+    <div class="hero-badge">
+      <i class="fas fa-microchip"></i>
+      AI-Powered Agriculture
+    </div>
+    <h1 class="hero-title">
+      Smart Irrigation System<br />
+      <span class="gradient-text">for Paddy Farming</span>
+    </h1>
+    <p class="hero-subtitle">
+      AI-powered water management using sensors and automation —<br />
+      conserving water, maximising yield, empowering farmers.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="stat-value">40%</span>
+        <span class="stat-label">Water Saved</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="stat-value">30%</span>
+        <span class="stat-label">Better Yield</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="stat-value">24/7</span>
+        <span class="stat-label">Monitoring</span>
+      </div>
+    </div>
+    <div class="hero-buttons">
+      <a href="#dashboard" class="btn btn-primary">
+        <i class="fas fa-tachometer-alt"></i> View Dashboard
+      </a>
+      <a href="#about" class="btn btn-outline">
+        <i class="fas fa-info-circle"></i> Learn More
+      </a>
+    </div>
+  </div>
+
+  <!-- Floating sensor cards -->
+  <div class="floating-cards">
+    <div class="float-card float-card--moisture" data-animate="fade-left">
+      <i class="fas fa-tint"></i>
+      <div>
+        <div class="fc-label">Moisture</div>
+        <div class="fc-val" id="hero-moisture">68%</div>
+      </div>
+    </div>
+    <div class="float-card float-card--temp" data-animate="fade-right">
+      <i class="fas fa-thermometer-half"></i>
+      <div>
+        <div class="fc-label">Temp</div>
+        <div class="fc-val" id="hero-temp">34°C</div>
+      </div>
+    </div>
+    <div class="float-card float-card--pump" data-animate="fade-left">
+      <i class="fas fa-circle" id="hero-pump-dot"></i>
+      <div>
+        <div class="fc-label">Pump</div>
+        <div class="fc-val" id="hero-pump">ON</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll down</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
+<section class="section about-section" id="about">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-tag">About the Project</span>
+      <h2 class="section-title">Intelligent Irrigation<br/>for Modern Farming</h2>
+      <p class="section-subtitle">A final-year engineering project merging embedded systems with AI analytics to solve water scarcity in paddy cultivation.</p>
+    </div>
+
+    <div class="about-grid">
+      <!-- Text column -->
+      <div class="about-text" data-animate="fade-right">
+        <p>Paddy (rice) farming accounts for over <strong>30 % of global freshwater usage</strong>. Traditional flood-irrigation wastes enormous amounts of water and increases greenhouse emissions. Our <strong>Smart Irrigation System</strong> replaces guesswork with precision sensor data and automated control.</p>
+        <p>The core hardware is an <strong>ESP32 microcontroller</strong> that continuously reads soil moisture, ambient temperature, and relative humidity from calibrated sensors. When readings cross defined thresholds, a 12 V water pump activates automatically — no manual intervention required.</p>
+        <p>All data is pushed over Wi-Fi to a cloud endpoint and visualised in real time on this web dashboard. A machine-learning module processes historical sensor logs and weather forecasts to predict irrigation schedules, saving water and boosting crop yield.</p>
+
+        <div class="tech-stack">
+          <span class="tech-chip"><i class="fas fa-microchip"></i> ESP32</span>
+          <span class="tech-chip"><i class="fas fa-water"></i> Soil Moisture Sensor</span>
+          
+          <span class="tech-chip"><i class="fas fa-bolt"></i> Solar Power</span>
+          <span class="tech-chip"><i class="fas fa-wifi"></i> IoT Cloud</span>
+          <span class="tech-chip"><i class="fas fa-brain"></i> AI Analytics</span>
+          <span class="tech-chip"><i class="fas fa-pump-medical"></i> Auto Pump</span>
+          <span class="tech-chip"><i class="fas fa-chart-line"></i> Dashboard</span>
+        </div>
+      </div>
+
+      <!-- Visual column -->
+      <div class="about-visual" data-animate="fade-left">
+        <div class="system-diagram">
+          <div class="diagram-center">
+            <i class="fas fa-microchip"></i>
+            <span>ESP32</span>
+          </div>
+          
+          <div class="diagram-node node-e" title="Water pump relay">
+            <i class="fas fa-tint"></i>
+            <span>Water Pump</span>
+          </div>
+          <div class="diagram-node node-s" title="Resistive soil moisture sensor">
+            <i class="fas fa-leaf"></i>
+            <span>Soil Sensor</span>
+          </div>
+          <div class="diagram-node node-w" title="Cloud & Dashboard">
+            <i class="fas fa-cloud"></i>
+            <span>Cloud / App</span>
+          </div>
+          <div class="diagram-node node-ne" title="water level sensor">
+            <i class="fas fa-water"></i>
+            <span>Water Level</span>
+          </div>
+          <div class="diagram-node node-sw" title="12 V solar panel">
+            <i class="fas fa-sun"></i>
+            <span>Solar Panel</span>
+          </div>
+          <div class="diagram-node node-n" title="PIR motion sensor for rodent detection" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%);">
+  <i class="fas fa-shield-cat"></i>
+  <span>PIR Sensor</span>
+</div>
+          <svg class="diagram-lines" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            
+            <line x1="150" y1="150" x2="260" y2="150" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <line x1="150" y1="150" x2="150" y2="260" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <line x1="150" y1="150" x2="40" y2="150"  stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <line x1="150" y1="150" x2="240" y2="60"  stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <line x1="150" y1="150" x2="60" y2="240"  stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <line x1="150" y1="150" x2="150" y2="40" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/>
+          </svg>
+        </div>
+
+        <div class="goal-cards">
+          <div class="goal-card">
+            <i class="fas fa-tint-slash"></i>
+            <div>
+              <strong>Reduce Wastage</strong>
+              <p>Up to 40 % less water vs traditional flooding</p>
+            </div>
+          </div>
+          <div class="goal-card">
+            <i class="fas fa-seedling"></i>
+            <div>
+              <strong>Improve Yield</strong>
+              <p>Optimal moisture levels boost crop productivity</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FEATURES ═══════════════════ -->
+<section class="section features-section" id="features">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-tag">Core Features</span>
+      <h2 class="section-title">Everything Your Farm Needs</h2>
+      <p class="section-subtitle">Seven powerful capabilities — all in one connected system.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card" data-animate="fade-up" data-delay="0">
+        <div class="feature-icon icon-green">
+          <i class="fas fa-water"></i>
+        </div>
+        <h3>Real-Time Soil Moisture Monitoring</h3>
+        <p>Capacitive sensors continuously measure volumetric water content. Data refreshes every 10 seconds on the dashboard.</p>
+        <div class="feature-meter">
+          <div class="meter-fill" style="--fill:68%"></div>
+        </div>
+        <span class="meter-label">Current: 68% VWC</span>
+      </div>
+
+      <div class="feature-card" data-animate="fade-up" data-delay="100">
+        <div class="feature-icon icon-blue">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <h3>Automatic Pump Control</h3>
+        <p>Relay-driven pump activates when moisture drops below threshold and stops when soil is adequately saturated.</p>
+        <div class="pump-indicator" id="feat-pump">
+          <span class="pump-dot active"></span> Pump Active
+        </div>
+      </div>
+
+      <div class="feature-card" data-animate="fade-up" data-delay="200">
+        <div class="feature-icon icon-sky">
+          <i class="fas fa-cloud-sun-rain"></i>
+        </div>
+        <h3>Weather-Based Irrigation Decisions</h3>
+        <p>Integrates OpenWeatherMap API. If rain is forecast within 6 hours, irrigation is automatically postponed.</p>
+        <div class="weather-pill">
+          <i class="fas fa-sun"></i> Clear – No rain expected today
+        </div>
+      </div>
+
+      <div class="feature-card" data-animate="fade-up" data-delay="300">
+        <div class="feature-icon icon-teal">
+          <i class="fas fa-fill-drip"></i>
+        </div>
+        <h3>Water Level Monitoring</h3>
+        <p>Ultrasonic sensor tracks tank volume in real time so farmers know when to refill before the pump runs dry.</p>
+        <div class="water-level-bar">
+          <div class="wl-fill" id="wl-fill" style="--level:74%">
+            <span>74%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card" data-animate="fade-up" data-delay="400">
+        <div class="feature-icon icon-yellow">
+          <i class="fas fa-solar-panel"></i>
+        </div>
+        <h3>Solar Power Integration</h3>
+        <p>A 20 W monocrystalline panel with LiPo battery ensures uninterrupted operation even during grid outages.</p>
+        <div class="solar-gauge">
+          <i class="fas fa-sun spinning-sun"></i>
+          <span>Solar: <strong>18.4 W</strong> generating</span>
+        </div>
+      </div>
+
+      <div class="feature-card" data-animate="fade-up" data-delay="500">
+        <div class="feature-icon icon-purple">
+          <i class="fas fa-globe"></i>
+        </div>
+        <h3>Remote Monitoring via Website</h3>
+        <p>Access live data and controls from any device worldwide through this secure web dashboard — no app install needed.</p>
+        <div class="device-icons">
+          <i class="fas fa-desktop"></i>
+          <i class="fas fa-tablet-alt"></i>
+          <i class="fas fa-mobile-alt"></i>
+        </div>
+      </div>
+
+      <div class="feature-card feature-card--wide" data-animate="fade-up" data-delay="600">
+        <div class="feature-icon icon-red">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3>Predictive Irrigation Analytics</h3>
+        <p>Machine-learning model trained on 3 months of sensor logs + local weather history forecasts the next irrigation event, optimal duration, and estimated water volume — reducing human decision-making by 85 %.</p>
+        <div class="prediction-bar">
+          <div class="pred-item">
+            <span>Next Irrigation</span>
+            <strong>Today 06:30 AM</strong>
+          </div>
+          <div class="pred-item">
+            <span>Duration</span>
+            <strong>22 min</strong>
+          </div>
+          <div class="pred-item">
+            <span>Volume Est.</span>
+            <strong>~48 L</strong>
+          </div>
+          <div class="pred-item">
+            <span>Confidence</span>
+            <strong>93 %</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════ SIMPLE DASHBOARD ═══════════════════ -->
+<section class="section dashboard-section" id="dashboard">
+  <div class="container">
+    
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-tag">Live Dashboard</span>
+      <h2 class="section-title">Farm Monitoring Dashboard</h2>
+      <p class="section-subtitle">Live ESP32 sensor values for soil moisture, water level, rain status, and pump control.</p>
+    </div>
+    <div class="rodent-alert-banner" id="rodent-alert-banner">
+  ⚠️ ALERT: Rodent Detected in Field!
+</div>
+
+    <div class="simple-status-bar" data-animate="fade-up">
+      <div>
+        <i class="fas fa-wifi status-online"></i>
+        <span>ESP32 Connected</span>
+      </div>
+      <div>
+        <i class="fas fa-clock"></i>
+        <span id="last-update">Last update: just now</span>
+      </div>
+      <div>
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Field 1 - Paddy Farm</span>
+      </div>
+    </div>
+
+    <div class="simple-dashboard-grid" data-animate="fade-up">
+      <div class="simple-card">
+        <div class="simple-card-icon icon-green">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <span class="simple-label">Soil Moisture</span>
+        <strong class="simple-value" id="kpi-moisture">68<span>%</span></strong>
+        <div class="kpi-bar">
+          <div class="kpi-fill green" id="kpi-moisture-bar" style="width:68%"></div>
+        </div>
+        <p class="simple-status status-normal" id="kpi-moisture-status">Optimal Range</p>
+      </div>
+
+      <div class="simple-card">
+        <div class="simple-card-icon icon-teal">
+          <i class="fas fa-water"></i>
+        </div>
+        <span class="simple-label">Water Level</span>
+        <strong class="simple-value" id="kpi-tank">74<span>%</span></strong>
+        <div class="kpi-bar">
+          <div class="kpi-fill teal" id="kpi-tank-bar" style="width:74%"></div>
+        </div>
+        <p class="simple-status status-normal" id="kpi-tank-status">Adequate Level</p>
+      </div>
+
+      <div class="simple-card">
+        <div class="simple-card-icon icon-blue">
+          <i class="fas fa-cloud-rain"></i>
+        </div>
+        <span class="simple-label">Rain Status</span>
+        <strong class="simple-value" id="kpi-rain">No Rain</strong>
+        <p class="simple-status status-normal" id="kpi-rain-status">Safe for irrigation</p>
+      </div>
+
+      <div class="simple-card">
+        <div class="simple-card-icon icon-pump" id="pump-icon-bg">
+          <i class="fas fa-faucet"></i>
+        </div>
+        <span class="simple-label">Pump Status</span>
+        <div class="simple-pump-row">
+          <div class="pump-led" id="pump-led"></div>
+          <strong class="simple-value" id="pump-label">ON</strong>
+        </div>
+        <p class="simple-status status-normal">Relay Output</p>
+      </div>
+      <div class="simple-card rodent-card" id="rodent-card">
+  <div class="simple-card-icon icon-red">
+    <i class="fas fa-shield-cat"></i>
+  </div>
+
+  <span class="simple-label">Rodent Detection</span>
+
+  <strong class="simple-value" id="rodent-status">Safe</strong>
+
+  <p class="simple-status status-normal" id="rodent-msg">
+    No rodent activity detected
+  </p>
+</div>
+
+
+  
+    </div>
+
+    
+  </div>
+</section>
+
+
+<!-- ═══════════════════ CONTROL PANEL ═══════════════════ -->
+<section class="section control-section" id="control">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-tag">Control Panel</span>
+      <h2 class="section-title">System Controls</h2>
+      <p class="section-subtitle">Manually override or configure automation settings from here.</p>
+    </div>
+
+    <div class="control-panel" data-animate="fade-up">
+      <!-- Left: Quick controls -->
+      <div class="control-left">
+        <h3 class="panel-subtitle"><i class="fas fa-sliders-h"></i> Pump Controls</h3>
+
+
+
+        <div class="mode-toggle-row">
+          <div class="mode-info">
+            <h4>Auto Mode</h4>
+            <p>Pump is controlled automatically based on moisture thresholds</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="auto-mode" checked onchange="toggleAutoMode(this)" />
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="mode-status" id="mode-status">
+          <i class="fas fa-robot"></i> Auto Mode <strong>Active</strong> – pump managed by sensors
+        </div>
+
+        <!-- Threshold Slider -->
+        <div class="slider-section">
+          <div class="slider-header">
+            <h4>Moisture Threshold</h4>
+            <span class="slider-val" id="threshold-val">50%</span>
+          </div>
+          <p class="slider-desc">Pump activates when soil moisture falls below this value.</p>
+          <input type="range" min="20" max="80" value="50" class="custom-slider" id="moisture-threshold" oninput="updateThreshold(this.value)" />
+          <div class="slider-labels">
+            <span>Dry (20%)</span>
+            <span>Optimal</span>
+            <span>Wet (80%)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Schedule & log -->
+      <div class="control-right">
+        <h3 class="panel-subtitle"><i class="fas fa-calendar-alt"></i> Irrigation Schedule</h3>
+        <div class="schedule-list">
+          <div class="schedule-item active">
+            <div class="sch-time">05:30 AM</div>
+            <div class="sch-info">
+              <span>Morning Irrigation</span>
+              <small>25 min · Auto trigger</small>
+            </div>
+            <span class="sch-badge badge-done">Done</span>
+          </div>
+          <div class="schedule-item active">
+            <div class="sch-time">12:00 PM</div>
+            <div class="sch-info">
+              <span>Midday Check</span>
+              <small>10 min · Sensor triggered</small>
+            </div>
+            <span class="sch-badge badge-running">Running</span>
+          </div>
+          <div class="schedule-item">
+            <div class="sch-time">05:00 PM</div>
+            <div class="sch-info">
+              <span>Evening Irrigation</span>
+              <small>20 min · Scheduled</small>
+            </div>
+            <span class="sch-badge badge-pending">Pending</span>
+          </div>
+          <div class="schedule-item">
+            <div class="sch-time">09:00 PM</div>
+            <div class="sch-info">
+              <span>Night Check</span>
+              <small>5 min · Moisture check</small>
+            </div>
+            <span class="sch-badge badge-pending">Pending</span>
+          </div>
+        </div>
+
+        <h3 class="panel-subtitle mt-24"><i class="fas fa-history"></i> Recent Activity</h3>
+        <div class="activity-log" id="activity-log">
+          <div class="log-item">
+            <span class="log-time">12:02 PM</span>
+            <span class="log-msg">Pump started – Moisture 45% (below threshold)</span>
+          </div>
+          <div class="log-item">
+            <span class="log-time">11:48 AM</span>
+            <span class="log-msg">Auto Mode re-enabled by system</span>
+          </div>
+          <div class="log-item">
+            <span class="log-time">11:30 AM</span>
+            <span class="log-msg">Pump stopped – Moisture reached 68%</span>
+          </div>
+          <div class="log-item">
+            <span class="log-time">09:15 AM</span>
+            <span class="log-msg">Weather check: No rain forecast</span>
+          </div>
+          <div class="log-item">
+            <span class="log-time">05:30 AM</span>
+            <span class="log-msg">Scheduled morning irrigation started</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification toast -->
+    <div class="toast" id="toast">
+      <i class="fas fa-check-circle"></i>
+      <span id="toast-msg">Action applied</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ BENEFITS ═══════════════════ -->
+<section class="section benefits-section" id="benefits">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-tag">Why It Matters</span>
+      <h2 class="section-title">Real Benefits for Real Farmers</h2>
+      <p class="section-subtitle">From water conservation to sustainable agriculture — the impact is measurable.</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card" data-animate="fade-up" data-delay="0">
+        <div class="benefit-icon">
+          <i class="fas fa-tint-slash"></i>
+        </div>
+        <div class="benefit-stat">40%</div>
+        <h3>Saves Water</h3>
+        <p>Precision soil-moisture targeting cuts irrigation water use by up to 40 % compared to conventional flooding methods.</p>
+        <div class="benefit-bar">
+          <div class="bb-fill" style="--w:40%"></div>
+        </div>
+      </div>
+
+      <div class="benefit-card" data-animate="fade-up" data-delay="100">
+        <div class="benefit-icon">
+          <i class="fas fa-user-minus"></i>
+        </div>
+        <div class="benefit-stat">60%</div>
+        <h3>Reduces Labour</h3>
+        <p>Automation eliminates manual field checks and pump switching, freeing farmers for higher-value activities.</p>
+        <div class="benefit-bar">
+          <div class="bb-fill" style="--w:60%"></div>
+        </div>
+      </div>
+
+      <div class="benefit-card" data-animate="fade-up" data-delay="200">
+        <div class="benefit-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="benefit-stat">30%</div>
+        <h3>Increases Efficiency</h3>
+        <p>Optimal root-zone moisture levels throughout the growing season translate directly to higher grain yield per hectare.</p>
+        <div class="benefit-bar">
+          <div class="bb-fill" style="--w:30%"></div>
+        </div>
+      </div>
+
+      <div class="benefit-card" data-animate="fade-up" data-delay="300">
+        <div class="benefit-icon">
+          <i class="fas fa-hands-helping"></i>
+        </div>
+        <div class="benefit-stat">∞</div>
+        <h3>Supports Farmers</h3>
+        <p>Remote visibility and alerts via SMS/app ensure even small-scale farmers with multiple plots can manage everything from a phone.</p>
+        <div class="benefit-bar">
+          <div class="bb-fill" style="--w:85%"></div>
+        </div>
+      </div>
+
+      <div class="benefit-card" data-animate="fade-up" data-delay="400">
+        <div class="benefit-icon">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <div class="benefit-stat">🌱</div>
+        <h3>Sustainable Agriculture</h3>
+        <p>Solar-powered operation with zero grid dependency. Lower water and chemical runoff supports healthy ecosystems and SDG-12 goals.</p>
+        <div class="benefit-bar">
+          <div class="bb-fill" style="--w:90%"></div>
+        </div>
+      </div>
+
+      <div class="benefit-card benefit-card--highlight" data-animate="fade-up" data-delay="500">
+        <div class="benefit-icon">
+          <i class="fas fa-rupee-sign"></i>
+        </div>
+        <div class="benefit-stat">₹18K</div>
+        <h3>Annual Cost Saving</h3>
+        <p>Per-acre estimate combining electricity savings, reduced labour costs, and decreased water charges. ROI achieved in &lt; 6 months.</p>
+        <div class="benefit-bar">
+          <div class="bb-fill" style="--w:75%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SDG Banner -->
+    <div class="sdg-banner" data-animate="fade-up">
+      <div class="sdg-item"><i class="fas fa-water"></i><span> Affordable Clean Energy– SDG 7</span></div>
+      <div class="sdg-divider"></div>
+      <div class="sdg-item"><i class="fas fa-carrot"></i><span>Responsible Consumption and Production – SDG 12</span></div>
+      <div class="sdg-divider"></div>
+      <div class="sdg-item"><i class="fas fa-solar-panel"></i><span>Decent Work and Economic Growth– SDG 8</span></div>
+      
+     
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TEAM ═══════════════════ -->
+<section class="section team-section" id="team">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-tag">Meet the Team</span>
+      <h2 class="section-title">The Minds Behind the System</h2>
+      <p class="section-subtitle">Final Year B.E. / B.Tech Students — Department of Electronics &amp; Communication Engineering</p>
+    </div>
+
+    <div class="college-badge" data-animate="fade-up">
+      <i class="fas fa-university"></i>
+      <div>
+        <strong>Sri Sairam Engineering College</strong>
+        <span>Affiliated to Anna University, Tamil Nadu, India</span>
+      </div>
+    </div>
+
+    <!-- Guide -->
+    <div class="guide-card" data-animate="fade-up">
+      <div class="guide-avatar">
+        <i class="fas fa-chalkboard-teacher"></i>
+      </div>
+      <div class="guide-info">
+        <span class="guide-tag">Project Guide</span>
+        <h3>Dr. POORIMA P</h3>
+        <p>M.E., Ph.D. Assistant Professor</p>
+        <p>Department of ECE</p>
+      </div>
+    </div>
+
+    <!-- Students -->
+    <div class="team-grid">
+      <div class="team-card" data-animate="fade-up" data-delay="0">
+        <div class="team-avatar">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <h3>RESHMA R</h3>
+        <p class="team-roll">Roll No: 412522106171</p>
+        
+
+      </div>
+
+      <div class="team-card" data-animate="fade-up" data-delay="100">
+        <div class="team-avatar">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <h3>SUSITHRA K</h3>
+        <p class="team-roll">Roll No: 412522106220 </p>
+
+      </div>
+
+      <div class="team-card" data-animate="fade-up" data-delay="200">
+        <div class="team-avatar">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <h3>PANCHAMI B G</h3>
+        <p class="team-roll">Roll No: 412522106144</p>
+
+      </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section class="section contact-section" id="contact">
+  <div class="container">
+    <div class="section-header" data-animate="fade-up">
+      <span class="section-tag">Get in Touch</span>
+      <h2 class="section-title">Contact Us</h2>
+      <p class="section-subtitle">Have questions about the project? We'd love to hear from you.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info" data-animate="fade-right">
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <h4>Location</h4>
+            <p>Sri Sairam Engineering College, Tamil Nadu, India</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <h4>Email</h4>
+            <p>smartirrigation@gmail.edu.in</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <h4>Phone</h4>
+            <p>+91 987654321</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon"><i class="fab fa-github"></i></div>
+          <div>
+            <h4>GitHub</h4>
+            <p>github.com/smart-irrigation-project</p>
+          </div>
+        </div>
+
+        <div class="project-info-box">
+          <h4><i class="fas fa-project-diagram"></i> Project Details</h4>
+          <ul>
+            <li><i class="fas fa-angle-right"></i> Project Name: Smart Irrigation System for Paddy Farming</li>
+            <li><i class="fas fa-angle-right"></i> Domain: Wireless and Adhoc Network</li>
+            <li><i class="fas fa-angle-right"></i> Technology: ESP32, Sensors</li>
+            <li><i class="fas fa-angle-right"></i> Year: 2023–2026</li>
+            <li><i class="fas fa-angle-right"></i> College: Sri Sairam Engineering College</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="contact-form-card" data-animate="fade-left">
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="Your first name" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Your last name" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" required>
+              <option value="">Select a topic</option>
+              <option>Project Enquiry</option>
+              <option>Technical Question</option>
+              <option>Collaboration</option>
+              <option>Demo Request</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <div class="form-success" id="form-success">
+            <i class="fas fa-check-circle"></i> Message sent! We'll respond within 24 hours.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <i class="fas fa-seedling"></i>
+          <span>SmartIrrigation</span>
+        </div>
+        <p>Smart water management for sustainable paddy farming. Reducing water waste, increasing yields, empowering farmers across Tamil Nadu.</p>
+        <div class="footer-socials">
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Project</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#control">Controls</a></li>
+          <li><a href="#team">Team</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Technology</h4>
+        <ul>
+          <li><a href="#">ESP32 Microcontroller</a></li>
+          <li><a href="#">Soil Moisture Sensor</a></li>
+          <li><a href="#">Rain Sensor</a></li>
+          <li><a href="#">PIR Sensor</a></li>
+          <li><a href="#">IoT Cloud Platform</a></li>
+          
+          <li><a href="#">Solar Integration</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-project">
+        <h4>Project Info</h4>
+        <div class="fp-item"><i class="fas fa-graduation-cap"></i><span>Final Year B.E./B.Tech Project</span></div>
+        <div class="fp-item"><i class="fas fa-university"></i><span>Sri Sairam Engineering College</span></div>
+        <div class="fp-item"><i class="fas fa-map-marker-alt"></i><span>Tamil Nadu, India</span></div>
+        <div class="fp-item"><i class="fas fa-calendar"></i><span>Academic Year 2024–25</span></div>
+        <div class="fp-item"><i class="fas fa-award"></i><span>Anna University Affiliated</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <span>&copy; 2026 Smart Irrigation System for Paddy Farming · Tamil Nadu, India</span>
+      <span>Final Year Project · Department of ECE</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll-to-top -->
+<button class="scroll-top" id="scroll-top" onclick="scrollToTop()" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+
+<!-- Rodent Alert Popup -->
+<div class="toast rodent-toast" id="rodent-toast">
+  <i class="fas fa-exclamation-triangle"></i>
+  <span>Rodent Detected! Farmer Alert Sent</span>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
